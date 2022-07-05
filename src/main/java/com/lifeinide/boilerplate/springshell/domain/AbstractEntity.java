@@ -2,6 +2,7 @@ package com.lifeinide.boilerplate.springshell.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @MappedSuperclass
 @SuperBuilder
 @NoArgsConstructor
+@ToString
 public class AbstractEntity {
 
 	public static final String ID_COLUMN = "id";

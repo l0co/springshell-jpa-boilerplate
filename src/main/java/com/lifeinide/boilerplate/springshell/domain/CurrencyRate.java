@@ -5,6 +5,7 @@ import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 @Getter
 @SuperBuilder
 @NoArgsConstructor
+@ToString(callSuper = true)
 public class CurrencyRate extends AbstractEntity {
 
 	public static final String TABLE = "currency_rate";
