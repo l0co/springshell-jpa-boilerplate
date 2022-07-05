@@ -31,7 +31,7 @@ class CurrencyTest extends AbstractIntegrationTest {
 		CurrencyRate rate = repository.findByCurrency(Currency.USD);
 		assertEquals(0, BigDecimal.ONE.compareTo(rate.getRate()));
 		BigDecimal newRate = new BigDecimal("2.0000");
-		service.updateRate(Currency.USD, newRate);
+		service.setRate(Currency.USD, newRate);
 		assertEquals(0, newRate.compareTo(rate.getRate()));
 	}
 

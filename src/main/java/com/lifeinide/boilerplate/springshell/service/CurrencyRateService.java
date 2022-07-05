@@ -19,7 +19,7 @@ public class CurrencyRateService {
 	
 	private final CurrencyRateRepository repository;
 
-	public void updateRate(@NonNull Currency currency, @NonNull BigDecimal rate) {
+	public void setRate(@NonNull Currency currency, @NonNull BigDecimal rate) {
 		repository.findByCurrency(currency).setRate(rate);
 	}
 
