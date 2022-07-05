@@ -1,5 +1,7 @@
 package com.lifeinide.boilerplate.springshell.display;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.lang.NonNull;
 import org.springframework.shell.table.ArrayTableModel;
 import org.springframework.shell.table.BorderStyle;
@@ -15,6 +17,9 @@ import java.util.List;
  */
 @Component
 public class TablePropertyRenderer extends PlainPropertyRenderer {
+
+	@Getter @Setter
+	private int tableSize = 100;
 
 	@Override
 	protected void doRender(@NonNull StringBuilder sb, @NonNull Iterable<? extends IDisplayProperties> collection) {
@@ -38,7 +43,7 @@ public class TablePropertyRenderer extends PlainPropertyRenderer {
 		TableModel tableModel = new ArrayTableModel(arr);
 		TableBuilder tableBuilder = new TableBuilder(tableModel);
 		tableBuilder.addFullBorder(BorderStyle.oldschool);
-		sb.append(tableBuilder.build().render(100)); // TODOLF externalize as prop
+		sb.append(tableBuilder.build().render(tableSize));
 	}
 
 }

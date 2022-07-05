@@ -1,14 +1,14 @@
 package com.lifeinide.boilerplate.springshell.display;
 
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
 
 /**
  * @author Lukasz Frankowski
  */
-// TODOLF restore
-//@Component
+@Component
 public class PlainPropertyRenderer extends AbstractPropertyRenderer {
 
 	@Override
