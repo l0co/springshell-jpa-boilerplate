@@ -1,6 +1,6 @@
 # Spring Shell JPA boiler plate
 
-A [Spring Shell](https://spring.io/projects/spring-shell) boilerplate application with JPA support based on H2 (repleacable). Application supports rendering entities in shell in table format. The example database contains one example `Currency` entity. 
+A [Spring Shell](https://spring.io/projects/spring-shell) boilerplate application with JPA support based on H2 (repleacable). The application supports rendering entities in a shell using a table format. An example database contains one example `Currency` entity. 
 
 ## Examples
 
