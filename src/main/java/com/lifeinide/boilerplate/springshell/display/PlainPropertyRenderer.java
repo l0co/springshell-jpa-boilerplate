@@ -1,26 +1,27 @@
 package com.lifeinide.boilerplate.springshell.display;
 
-import org.springframework.stereotype.Component;
+import org.springframework.lang.NonNull;
 
 import java.util.Iterator;
 
 /**
  * @author Lukasz Frankowski
  */
-@Component
+// TODOLF restore
+//@Component
 public class PlainPropertyRenderer extends AbstractPropertyRenderer {
 
 	@Override
-	protected void doRender(StringBuilder sb, Iterable<? extends IDisplayProperties> collection) {
+	protected void doRender(@NonNull StringBuilder sb, @NonNull Iterable<? extends IDisplayProperties> collection) {
 		for (Iterator<? extends IDisplayProperties> iterator = collection.iterator(); iterator.hasNext();) {
 			doRender(sb, iterator.next());
 			if (iterator.hasNext())
-				sb.append("\n\n");
+				sb.append("\n");
 		}
 	}
 
 	@Override
-	protected void doRender(StringBuilder sb, IDisplayProperties object) {
+	protected void doRender(@NonNull StringBuilder sb, @NonNull IDisplayProperties object) {
 		if (object.displayProperties().isEmpty()) {
 			sb.append("(no properties)");
 			return;
@@ -28,9 +29,7 @@ public class PlainPropertyRenderer extends AbstractPropertyRenderer {
 
 		for (Iterator<DisplayProperty> iterator = object.displayProperties().iterator(); iterator.hasNext(); ) {
 			DisplayProperty prop = iterator.next();
-			sb.append(String.format("%s=%s", prop.getName(), prop.getValue()));
-			if (iterator.hasNext())
-				sb.append("\n");
+			sb.append(String.format("%s=%s\n", prop.getName(), prop.getValue()));
 		}
 	}
 
