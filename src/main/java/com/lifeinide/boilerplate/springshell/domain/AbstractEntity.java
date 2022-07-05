@@ -19,8 +19,8 @@ public class AbstractEntity {
 	public static final String DISCRIMINATOR_COLUMN = "cls";
 	public static final String ID_COLUMN = "id";
 
-	public static final String UUID_COLUMN_DEF = "VARCHAR(36)";
-	public static final String TIMESTAMP_COLUMN_DEF = "DATETIME(3)";
+	public static final String UUID_COLUMN_DEF = "UUID";
+	public static final String TIMESTAMP_COLUMN_DEF = "TIMESTAMP WITH TIME ZONE";
 
 	public static final String UUID_HIBERNATE_TYPE = "uuid-char";
 
