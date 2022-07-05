@@ -27,6 +27,7 @@ public class CurrencyRate extends AbstractEntity {
 	
 	@Setter
 	@Default
+	@Column(columnDefinition = "NUMERIC(19, 4)")
 	private BigDecimal rate = BigDecimal.ONE;
 
 }

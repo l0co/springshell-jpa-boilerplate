@@ -38,3 +38,6 @@ out/
 
 ### Spring ####
 spring-shell.log
+
+### H2 ###
+*.db

@@ -6,7 +6,10 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -16,7 +19,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AbstractEntity {
 
-	public static final String DISCRIMINATOR_COLUMN = "cls";
 	public static final String ID_COLUMN = "id";
 
 	public static final String UUID_COLUMN_DEF = "UUID";
@@ -27,15 +29,9 @@ public class AbstractEntity {
 	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(columnDefinition = UUID_COLUMN_DEF )
+	@Column(name = ID_COLUMN, columnDefinition = UUID_COLUMN_DEF )
 	@Type(type=UUID_HIBERNATE_TYPE)
 	private UUID id;
-
-	@Version
-	private Integer version;
-
-	@Column(updatable = false, insertable = false) // should be used as a discriminator column
-	protected String cls = getClass().getSimpleName();
 
 	@Override
 	public boolean equals(Object o) {
@@ -43,8 +39,7 @@ public class AbstractEntity {
 			if (this == o) return true;
 			if (!(o instanceof AbstractEntity)) return false;
 			AbstractEntity that = (AbstractEntity) o;
-			return Objects.equals(getId(), that.getId()) &&
-				Objects.equals(getCls(), that.getCls());
+			return Objects.equals(getId(), that.getId());
 		} else
 			return super.equals(o);
 	}
@@ -52,11 +47,9 @@ public class AbstractEntity {
 	@Override
 	public int hashCode() {
 		if (id != null) // is persisted
-			return Objects.hash(getId(), getCls());
+			return Objects.hash(getId());
 		else
 			return super.hashCode();
 	}
-
-
 
 }
