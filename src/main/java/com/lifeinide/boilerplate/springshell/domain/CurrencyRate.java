@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.function.BiConsumer;
 
 @Entity
 @Table(name = CurrencyRate.TABLE)
@@ -32,4 +33,9 @@ public class CurrencyRate extends AbstractEntity {
 	@Column(columnDefinition = "NUMERIC(19, 4)")
 	private BigDecimal rate = BigDecimal.ONE;
 
+	@Override
+	protected void collectDisplayProperties(BiConsumer<String, Object> p) {
+		p.accept("currency", currency);
+		p.accept("rate", rate);
+	}
 }

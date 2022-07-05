@@ -1,5 +1,7 @@
 package com.lifeinide.boilerplate.springshell.domain;
 
+import com.lifeinide.boilerplate.springshell.display.DisplayProperty;
+import com.lifeinide.boilerplate.springshell.display.IDisplayProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -11,15 +13,18 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.function.BiConsumer;
 
 @Getter
 @MappedSuperclass
 @SuperBuilder
 @NoArgsConstructor
 @ToString
-public class AbstractEntity {
+public class AbstractEntity implements IDisplayProperties {
 
 	public static final String ID_COLUMN = "id";
 
@@ -52,6 +57,17 @@ public class AbstractEntity {
 			return Objects.hash(getId());
 		else
 			return super.hashCode();
+	}
+
+	@Override
+	public final List<DisplayProperty> displayProperties() {
+		List<DisplayProperty> properties = new ArrayList<>();
+		collectDisplayProperties((name, value) -> properties.add(DisplayProperty.of(name, value)));
+		return properties;
+	}
+
+	protected void collectDisplayProperties(BiConsumer<String, Object> p) {
+		p.accept("id", id);
 	}
 
 }
