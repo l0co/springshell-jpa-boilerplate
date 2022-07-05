@@ -16,7 +16,7 @@ public class PlainPropertyRenderer extends AbstractPropertyRenderer {
 		for (Iterator<? extends IDisplayProperties> iterator = collection.iterator(); iterator.hasNext();) {
 			doRender(sb, iterator.next());
 			if (iterator.hasNext())
-				sb.append("\n");
+				sb.append("\n\n");
 		}
 	}
 
@@ -29,7 +29,9 @@ public class PlainPropertyRenderer extends AbstractPropertyRenderer {
 
 		for (Iterator<DisplayProperty> iterator = object.displayProperties().iterator(); iterator.hasNext(); ) {
 			DisplayProperty prop = iterator.next();
-			sb.append(String.format("%s=%s\n", prop.getName(), prop.getValue()));
+			sb.append(String.format("%s=%s", prop.getName(), prop.getValue()));
+			if (iterator.hasNext())
+				sb.append("\n");
 		}
 	}
 
